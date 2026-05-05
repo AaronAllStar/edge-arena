@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette */
+    --background: 240 6% 4%;
+    --foreground: 0 0% 100%;
+    --card: 240 6% 7%;
+    --card-foreground: 0 0% 100%;
+    --primary: 263 70% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 217 10% 63%;
+    --accent: 142 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 263 70% 65%;
+    --radius: 0.5rem;
+
+    /* Arena custom */
+    --neon-volt: 142 100% 50%;
+    --electric-violet: 263 70% 65%;
+    --cyber-teal: 173 58% 50%;
+    --win: 142 100% 50%;
+    --loss: 0 84% 60%;
+    --gold: 45 93% 47%;
+    --silver: 220 14% 70%;
+    --bronze: 25 76% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--muted)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* Selection */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Neon glow */
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.4), 0 0 60px hsl(var(--primary) / 0.15);
+}
+.glow-accent {
+  box-shadow: 0 0 20px hsl(var(--accent) / 0.4), 0 0 60px hsl(var(--accent) / 0.15);
+}
+.glow-gold {
+  box-shadow: 0 0 20px hsl(var(--gold) / 0.3);
+}
+
+/* Neon text glow */
+.neon-text {
+  text-shadow: 0 0 10px hsl(var(--accent) / 0.6), 0 0 40px hsl(var(--accent) / 0.2);
+}
+.violet-text {
+  text-shadow: 0 0 10px hsl(var(--primary) / 0.6), 0 0 40px hsl(var(--primary) / 0.2);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass */
+.glass {
+  background: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* Stat card */
+.stat-card {
+  @apply transition-all duration-300;
+}
+.stat-card:hover {
+  @apply -translate-y-0.5;
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.15), 0 8px 30px hsl(var(--primary) / 0.08);
+}
+
+/* Neon border pulse */
+@keyframes neon-pulse {
+  0%, 100% { border-color: hsl(var(--accent) / 0.3); }
+  50% { border-color: hsl(var(--accent) / 0.6); }
+}
+.neon-border {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
